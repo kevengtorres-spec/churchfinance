@@ -30,14 +30,14 @@ import {
 // A proteção real vem das Database Rules (database.rules.json) e da
 // restrição de domínios da chave no Google Cloud Console.
 const firebaseConfig = {
-  apiKey: "AIzaSyAGVwVmUw4Zkwbc7qB-aXrMlBU_3jSljrM",
-  authDomain: "teste2-3451b.firebaseapp.com",
-  databaseURL: "https://teste2-3451b-default-rtdb.firebaseio.com",
-  projectId: "teste2-3451b",
-  storageBucket: "teste2-3451b.firebasestorage.app",
-  messagingSenderId: "535637722206",
-  appId: "1:535637722206:web:ae8b02510d9f491aaa20cf",
-  measurementId: "G-MERXHBVL6N",
+  apiKey: "AIzaSyBJV9nz2k26CeHBTCsg0PM5JdvZhtIfS1A",
+  authDomain: "churchfinance-5948f.firebaseapp.com",
+  databaseURL: "https://churchfinance-5948f-default-rtdb.firebaseio.com",
+  projectId: "churchfinance-5948f",
+  storageBucket: "churchfinance-5948f.firebasestorage.app",
+  messagingSenderId: "369824624976",
+  appId: "1:369824624976:web:8b1d41af3f8bc54ef8fc55",
+  measurementId: "G-B3BL9YZVXV"
 };
 
 const app = initializeApp(firebaseConfig);
