@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#162013" />
+  <title>Relatórios · Church Finance</title>
+  <link rel="icon" type="image/svg+xml" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.1?plugins=forms"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-canvas font-sans text-white">
+
+  <div id="loadingOverlay" role="status" class="fixed inset-0 z-50 flex items-center justify-center bg-canvas">
+    <div class="space-y-2 text-center">
+      <div class="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent"></div>
+      <p class="text-sm text-muted">Verificando sessão...</p>
+    </div>
+  </div>
+
+  <div id="app-shell">
+  <main class="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-5 sm:px-6 md:px-10">
+    <section class="mb-6">
+      <h1 class="mb-1 text-3xl font-bold">Histórico de fluxo de caixa</h1>
+      <p class="text-muted">Visualize e filtre todas as entradas de fluxo de caixa.</p>
+    </section>
+
+    <!-- Busca -->
+    <section class="mb-4">
+      <label for="searchInput" class="sr-only">Pesquisar relatórios</label>
+      <div class="flex h-12 items-center rounded-xl bg-field px-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#a2c398" class="mr-2 shrink-0"
+          viewBox="0 0 256 256" aria-hidden="true">
+          <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
+        </svg>
+        <input id="searchInput" type="search" autocomplete="off"
+          placeholder="Pesquise por data, valor, conferente ou status"
+          class="w-full flex-grow border-0 bg-transparent text-base text-white placeholder:text-muted focus:ring-0" />
+      </div>
+    </section>
+
+    <!-- Filtro por período -->
+    <fieldset class="mb-4">
+      <legend class="mb-2 text-xl font-bold">Filtro por período</legend>
+      <div class="flex flex-wrap gap-2 rounded-full bg-field p-2">
+        <label class="min-w-[110px] flex-1 cursor-pointer">
+          <input type="radio" name="periodFilter" value="30" checked class="peer sr-only" />
+          <span class="flex items-center justify-center rounded-full px-2 py-2 text-sm font-medium text-muted transition hover:text-white peer-checked:bg-canvas peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-mint">Últimos 30 dias</span>
+        </label>
+        <label class="min-w-[110px] flex-1 cursor-pointer">
+          <input type="radio" name="periodFilter" value="90" class="peer sr-only" />
+          <span class="flex items-center justify-center rounded-full px-2 py-2 text-sm font-medium text-muted transition hover:text-white peer-checked:bg-canvas peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-mint">Últimos 90 dias</span>
+        </label>
+        <label class="min-w-[110px] flex-1 cursor-pointer">
+          <input type="radio" name="periodFilter" value="0" class="peer sr-only" />
+          <span class="flex items-center justify-center rounded-full px-2 py-2 text-sm font-medium text-muted transition hover:text-white peer-checked:bg-canvas peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-mint">Todos os períodos</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <p id="summary" aria-live="polite" class="mb-3 text-sm text-muted"></p>
+
+    <!-- Tabela -->
+    <section class="mb-16 overflow-x-auto rounded-xl border border-edge">
+      <table class="min-w-full text-left text-sm">
+        <caption class="sr-only">Relatórios de fluxo de caixa</caption>
+        <thead class="bg-surface text-xs uppercase text-muted">
+          <tr>
+            <th scope="col" class="px-3 py-3">Status</th>
+            <th scope="col" class="px-3 py-3">Data</th>
+            <th scope="col" class="px-3 py-3 text-right">Total</th>
+            <th scope="col" class="px-3 py-3">Conferentes</th>
+            <th scope="col" class="px-3 py-3">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="divide-y divide-edge">
+          <tr><td colspan="5" class="px-3 py-8 text-center text-muted">Carregando relatórios...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  </div>
+
+  <script type="module" src="js/reports.js"></script>
+</body>
+
+</html>

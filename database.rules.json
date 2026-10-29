@@ -1,0 +1,75 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('ativo').val() !== false && (root.child('users').child(auth.uid).child('role').val() === 'ADM' || root.child('users').child(auth.uid).child('role').val() === 'MASTER')",
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && root.child('users').child(auth.uid).child('ativo').val() !== false && (root.child('users').child(auth.uid).child('role').val() === 'ADM' || root.child('users').child(auth.uid).child('role').val() === 'MASTER')",
+        "nome": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length <= 120"
+        },
+        "role": {
+          ".validate": "newData.val() === 'ADM' || newData.val() === 'DIACONO_MASTER' || newData.val() === 'DIACONO_CONFERENTE' || newData.val() === 'TESOUREIRO_MASTER' || newData.val() === 'TESOUREIRO_CONSULTA'"
+        },
+        "ativo": {
+          ".validate": "newData.isBoolean()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "relatorios": {
+      ".indexOn": [
+        "criadoPor"
+      ],
+      ".read": "auth != null && root.child('users').child(auth.uid).child('ativo').val() !== false && ((root.child('users').child(auth.uid).child('role').val() === 'ADM' || root.child('users').child(auth.uid).child('role').val() === 'MASTER' || root.child('users').child(auth.uid).child('role').val() === 'DIACONO_MASTER' || root.child('users').child(auth.uid).child('role').val() === 'TESOUREIRO_MASTER' || root.child('users').child(auth.uid).child('role').val() === 'TESOUREIRO_CONSULTA') || ((root.child('users').child(auth.uid).child('role').val() === 'DIACONO_CONFERENTE' || root.child('users').child(auth.uid).child('role').val() === 'CONFERENTE') && query.orderByChild === 'criadoPor' && query.equalTo === auth.uid))",
+      "$id": {
+        ".read": "auth != null && root.child('users').child(auth.uid).child('ativo').val() !== false && ((root.child('users').child(auth.uid).child('role').val() === 'ADM' || root.child('users').child(auth.uid).child('role').val() === 'MASTER' || root.child('users').child(auth.uid).child('role').val() === 'DIACONO_MASTER' || root.child('users').child(auth.uid).child('role').val() === 'TESOUREIRO_MASTER' || root.child('users').child(auth.uid).child('role').val() === 'TESOUREIRO_CONSULTA') || ((root.child('users').child(auth.uid).child('role').val() === 'DIACONO_CONFERENTE' || root.child('users').child(auth.uid).child('role').val() === 'CONFERENTE') && data.child('criadoPor').val() === auth.uid))",
+        ".write": "auth != null && root.child('users').child(auth.uid).child('ativo').val() !== false && ((root.child('users').child(auth.uid).child('role').val() === 'ADM' || root.child('users').child(auth.uid).child('role').val() === 'MASTER') || ((root.child('users').child(auth.uid).child('role').val() === 'DIACONO_MASTER') && (!data.exists() ? (newData.child('status').val() === 'PENDENTE' && newData.child('criadoPor').val() === auth.uid) : (data.child('status').val() !== 'RECEBIDO' && (!newData.exists() || newData.child('status').val() === data.child('status').val())))) || ((root.child('users').child(auth.uid).child('role').val() === 'DIACONO_CONFERENTE' || root.child('users').child(auth.uid).child('role').val() === 'CONFERENTE') && (!data.exists() ? (newData.child('status').val() === 'PENDENTE' && newData.child('criadoPor').val() === auth.uid) : (newData.exists() && data.child('criadoPor').val() === auth.uid && data.child('status').val() === 'PENDENTE' && newData.child('dizimos').val() === data.child('dizimos').val() && newData.child('ofertas').val() === data.child('ofertas').val() && newData.child('transferencias').val() === data.child('transferencias').val() && newData.child('outras').val() === data.child('outras').val() && newData.child('total').val() === data.child('total').val() && newData.child('data').val() === data.child('data').val() && newData.child('criadoPor').val() === data.child('criadoPor').val() && newData.child('status').val() === data.child('status').val()))) || ((root.child('users').child(auth.uid).child('role').val() === 'TESOUREIRO_MASTER') && data.exists() && newData.exists() && newData.child('dizimos').val() === data.child('dizimos').val() && newData.child('ofertas').val() === data.child('ofertas').val() && newData.child('transferencias').val() === data.child('transferencias').val() && newData.child('outras').val() === data.child('outras').val() && newData.child('total').val() === data.child('total').val() && newData.child('data').val() === data.child('data').val() && newData.child('criadoPor').val() === data.child('criadoPor').val() && newData.child('conferente1').val() === data.child('conferente1').val() && newData.child('conferente2').val() === data.child('conferente2').val()))",
+        ".validate": "newData.hasChildren(['dizimos', 'ofertas', 'transferencias', 'outras', 'total', 'data'])",
+        "dizimos": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000000"
+        },
+        "ofertas": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000000"
+        },
+        "transferencias": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000000"
+        },
+        "outras": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000000"
+        },
+        "total": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 400000000"
+        },
+        "data": {
+          ".validate": "newData.isString() && newData.val().length <= 40"
+        },
+        "status": {
+          ".validate": "newData.val() === 'PENDENTE' || newData.val() === 'RECEBIDO' || newData.val() === 'DIVERGENTE'"
+        },
+        "conferente1": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "conferente2": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "criadoPor": {
+          ".validate": "newData.isString()"
+        },
+        "conferente": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

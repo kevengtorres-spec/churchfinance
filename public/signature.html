@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#162013" />
+  <title>Verificação do relatório · Church Finance</title>
+  <link rel="icon" type="image/svg+xml" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.1?plugins=forms"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-canvas font-sans text-white">
+
+  <div id="loadingOverlay" role="status" class="fixed inset-0 z-50 flex items-center justify-center bg-canvas">
+    <div class="space-y-2 text-center">
+      <div class="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent"></div>
+      <p class="text-sm text-muted">Verificando sessão...</p>
+    </div>
+  </div>
+
+  <div id="app-shell">
+  <main class="flex flex-1 items-center justify-center px-4 py-8 md:px-20">
+    <div class="w-full max-w-xl space-y-6">
+
+      <h1 class="text-2xl font-bold leading-tight sm:text-3xl">Verificação do relatório de caixa</h1>
+
+      <div id="infoRelatorio" class="rounded-xl bg-surface px-4 py-3 text-sm sm:text-base">Carregando relatório...</div>
+
+      <p id="relatorioInfo" role="status" class="text-base font-medium"></p>
+
+      <form id="signatureForm" novalidate class="space-y-4">
+        <div>
+          <label for="conferente1" class="mb-2 block font-medium">Conferente 1</label>
+          <input id="conferente1" type="text" maxlength="80" autocomplete="off" placeholder="Insira nome completo"
+            class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted disabled:opacity-70" />
+        </div>
+        <div>
+          <label for="conferente2" class="mb-2 block font-medium">Conferente 2</label>
+          <input id="conferente2" type="text" maxlength="80" autocomplete="off" placeholder="Insira nome completo"
+            class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted disabled:opacity-70" />
+        </div>
+
+        <div id="signActions" class="flex justify-between gap-4 pt-2">
+          <button id="pularRelatorioBtn" type="button"
+            class="h-10 w-full rounded-full bg-[#a6b49a] px-4 text-sm font-bold text-canvas transition hover:brightness-95">
+            Assinar depois
+          </button>
+          <button id="gerarRelatorioBtn" type="submit"
+            class="h-10 w-full rounded-full bg-accent px-4 text-sm font-bold text-canvas transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50">
+            Salvar
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 flex justify-center">
+        <button id="btn-voltar" type="button"
+          class="rounded-full bg-gray-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-gray-700">
+          Voltar aos relatórios
+        </button>
+      </div>
+
+    </div>
+  </main>
+  </div>
+
+  <script type="module" src="js/signature.js"></script>
+</body>
+
+</html>

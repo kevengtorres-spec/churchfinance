@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#162013" />
+  <title>Novo relatório · Church Finance</title>
+  <link rel="icon" type="image/svg+xml" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.1?plugins=forms"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-canvas font-sans text-white">
+
+  <div id="loadingOverlay" role="status" class="fixed inset-0 z-50 flex items-center justify-center bg-canvas">
+    <div class="space-y-2 text-center">
+      <div class="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent"></div>
+      <p class="text-sm text-muted">Verificando sessão...</p>
+    </div>
+  </div>
+
+  <div id="app-shell">
+  <main class="mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6 lg:px-8">
+    <div class="mb-6">
+      <h1 id="pageTitle" class="text-2xl font-bold sm:text-3xl">Novo relatório</h1>
+      <p class="mt-2 text-sm text-muted sm:text-base">
+        Informe a data e os valores recebidos. O total é calculado automaticamente.
+      </p>
+    </div>
+
+    <p id="formNotice" role="status" class="mb-4 hidden rounded-lg border border-edge bg-surface px-4 py-3 text-sm"></p>
+
+    <form id="reportForm" novalidate class="space-y-5">
+      <div>
+        <label for="data" class="mb-2 block font-medium">Data do culto</label>
+        <input id="data" type="date" required
+          class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white" />
+      </div>
+
+      <div>
+        <label for="dizimos" class="mb-2 block font-medium">Dízimos (R$)</label>
+        <input id="dizimos" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0,00"
+          class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted" />
+      </div>
+
+      <div>
+        <label for="ofertas" class="mb-2 block font-medium">Ofertas (R$)</label>
+        <input id="ofertas" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0,00"
+          class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted" />
+      </div>
+
+      <div>
+        <label for="transferencias" class="mb-2 block font-medium">Transferências bancárias (R$)</label>
+        <input id="transferencias" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0,00"
+          class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted" />
+      </div>
+
+      <div>
+        <label for="outras" class="mb-2 block font-medium">Outras entradas (R$)</label>
+        <input id="outras" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0,00"
+          class="h-14 w-full rounded-xl border border-edge bg-surface p-4 text-white placeholder:text-muted" />
+      </div>
+
+      <div class="pt-3">
+        <h2 class="text-lg font-bold">Total acumulado</h2>
+        <p id="total" class="mt-1 text-2xl font-extrabold text-mint">R$ 0,00</p>
+      </div>
+
+      <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-end">
+        <button id="btn-voltar" type="button"
+          class="w-full rounded-xl bg-[#4a4a4a] px-6 py-3 font-medium text-white transition hover:bg-[#666] sm:w-auto">
+          Voltar
+        </button>
+        <button id="btn-limpar" type="button"
+          class="w-full rounded-xl bg-[#4a4a4a] px-6 py-3 font-medium text-white transition hover:bg-[#666] sm:w-auto">
+          Limpar
+        </button>
+        <button id="btn-assinar" type="button"
+          class="w-full rounded-xl bg-field px-6 py-3 font-medium text-white transition hover:bg-[#3d5a33] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
+          Assinar relatório
+        </button>
+        <button id="btn-salvar" type="submit"
+          class="w-full rounded-xl bg-accent px-6 py-3 font-bold text-canvas transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </main>
+  </div>
+
+  <script type="module" src="js/generate.js"></script>
+</body>
+
+</html>

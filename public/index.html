@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#162013" />
+  <title>Principal · Church Finance</title>
+  <link rel="icon" type="image/png+xml" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.1?plugins=forms"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-canvas font-sans text-white">
+
+  <!-- Tela de carregamento (some quando a sessão é validada) -->
+  <div id="loadingOverlay" role="status" class="fixed inset-0 z-50 flex items-center justify-center bg-canvas">
+    <div class="space-y-2 text-center">
+      <div class="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent"></div>
+      <p class="text-sm text-muted">Verificando sessão...</p>
+    </div>
+  </div>
+
+  <div id="app-shell">
+  <main class="flex-1 px-4 py-10 md:px-10">
+    <div class="mx-auto w-full max-w-3xl space-y-8">
+      <div class="space-y-3">
+        <h1 id="welcome" class="text-3xl font-bold sm:text-4xl">Bem-vindo ao gestor de finanças da Igreja</h1>
+        <p class="text-base leading-relaxed text-white/90 sm:text-lg">
+          Escolha um módulo no menu ao lado ou use os atalhos abaixo.
+        </p>
+      </div>
+      <nav aria-label="Atalhos" id="quickLinks" class="grid gap-4 sm:grid-cols-2"></nav>
+    </div>
+  </main>
+  </div>
+
+  <script type="module" src="js/index.js"></script>
+</body>
+
+</html>
